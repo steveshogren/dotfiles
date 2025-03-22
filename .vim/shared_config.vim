@@ -108,7 +108,7 @@ set cursorline
     " ^ Enables cursor line position tracking
 highlight clear CursorLine
     " ^ Removes the underline caused by enabling cursorline
-highlight CursorLine guibg=#00005f ctermbg=darkblue
+" highlight CursorLine guibg=#00005f ctermbg=darkblue
     " ^ Current line background color
 highlight clear CursorLineNr
     " ^ In new vim versions the cursor line number is separated from CursorLine
