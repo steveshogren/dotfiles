@@ -1,0 +1,83 @@
+" Name:         _gvimrc
+" Description:  vimrc for windows gvim
+" Version:      1.0.18
+" Date:         2022-11-21
+" Copyright:    Kenneth Aaron , flyingrhino AT orcon DOT net DOT nz
+" License:      GPLv3
+" Source:       https://github.com/flyingrhinonz/gvimrc_windows
+" to locate position
+"echo $MYGVIMRC
+
+
+source ~/.vim/shared_config.vim
+
+
+highlight NonText guifg=yellow guibg=blue
+    " ^ Change the colors for the nontext listchars I configured above (extends & precedes)
+    "   To view the current highlight groups and their set colors use:
+    "       :so $VIMRUNTIME/syntax/hitest.vim   inside vim
+
+highlight EndOfBuffer guifg=grey guibg=black
+    " ^ To set the color of the:  '~'  at the end of the file (only supported in vim 8+)
+
+
+
+
+
+
+set guifont=Consolas:h10
+    " ^ Set a sensible windows 10 font and font size
+
+autocmd GUIEnter * simalt ~X
+    " ^ Start vim with window maximized, default size is too small
+
+autocmd GUIEnter * set vb t_vb=
+    " ^ Disable annoying noises from vim
+    "   Documented here: https://vim.fandom.com/wiki/Disable_beeping
+
+set guioptions+=a
+    " ^ Text marked will be automatically copied to the clipboard
+    "   This includes every method - mark with the mouse, 'v' for visual selection, etc
+
+" Make shift-insert work like in Xterm:
+map <S-Insert> <MiddleMouse>
+map! <S-Insert> <MiddleMouse>
+
+
+
+
+" The following settings are specific to windows.
+" Use the commands:
+"   :echo $HOME
+"   :echo $VIM
+"   :echo $MYVIMRC
+"       to show the respective paths.
+
+" The next set of commands tidy up the default files/dirs so that vim-style files
+" don't get left all over the place:
+
+set backupdir=c:/temp/vimtemp//
+    " ^ Put the backup file in a sensible directory
+    "   This dir needs to exist though!
+    "   The // at the end means that the directory information will be saved in the filename
+    "   so the backup info for /work/myfile.txt will be stored in /tmp/work/myfile.txt
+
+set directory=c:/temp/vimtemp//
+    " ^ Put the swap file in a sensible directory
+
+"set undodir=c:/temp/vimtemp//
+    " ^ Put the persistent undo file in a sensible directory
+    "   Actually we're not using this option because in the next command we're
+    "   disabling persistent undo completely.
+
+set noundofile
+    " ^ Disable persistent undo
+
+set viminfo='1000,nc:\\temp\\vimtemp\\_viminfo
+    " ^ Put the viminfo file in a sensible directory
+
+
+" Other useful settings I've found but don't use regularly:
+" set ff=unix       " Sets the new line format (cr /crlf)
+" set filetype=on   " By default it's on - type  :filetype  to view current setting
+
