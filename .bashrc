@@ -5,6 +5,22 @@ alias ci='git commit -m'
 alias add='git add -p'
 alias co='git checkout'
 
+# Increase history size (default is 500)
+HISTSIZE=10000
+HISTFILESIZE=20000
+
+# Don't put duplicate lines in the history
+HISTCONTROL=ignoredups:erasedups
+
+# Append to history, don't overwrite it
+shopt -s histappend
+
+# Save and reload the history after each command
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# Format to include timestamps
+HISTTIMEFORMAT="%F %T "
+
 # .bashrc
 
 # Source global definitions
