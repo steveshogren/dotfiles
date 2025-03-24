@@ -2,6 +2,19 @@ if &compatible
   set nocompatible
 endif
 
+set guicursor=n-v-c:block,i:ver50
+
+" Use a blinking upright bar cursor in Insert mode, a blinking block in normal
+if &term == 'xterm-256color' || &term == 'screen-256color'
+    let &t_SI = "\<Esc>[5 q"
+    let &t_EI = "\<Esc>[1 q"
+endif
+
+if exists('$TMUX')
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+endif
+
 " When the +eval feature is missing, the set command above will be skipped.
 " Use a trick to reset compatible only when the +eval feature is missing.
 silent! while 0
@@ -9,6 +22,7 @@ silent! while 0
 silent! endwhile
 
 " colorscheme torte
+colorscheme wildcharm
 
 
 " Syntax highlighting makes reading some text impossible in vimdiff mode.
@@ -109,12 +123,15 @@ set cursorline
 highlight clear CursorLine
     " ^ Removes the underline caused by enabling cursorline
 " highlight CursorLine guibg=#00005f ctermbg=darkblue
+highlight CursorLine guibg=#1c1c1c ctermbg=235
     " ^ Current line background color
 highlight clear CursorLineNr
     " ^ In new vim versions the cursor line number is separated from CursorLine
     "       and without this the cursor line number will still be underlined.
-highlight LineNr guifg=blue
-highlight CursorLineNR guibg=red guifg=white
+highlight LineNr guifg=#585858
+"highlight LineNr guifg=blue
+"highlight CursorLineNR guibg=red guifg=white
+highlight CursorLineNR guibg=black guifg=white
     " ^ Sets the line numbering to a clear background
 
 
@@ -146,5 +163,5 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd FileType text setlocal textwidth=0
     " ^ Override the stupid wrap lines autocmd:
 
-let &guicursor = &guicursor . ",a:blinkon0"
+" let &guicursor = &guicursor . ",a:blinkon0"
 
